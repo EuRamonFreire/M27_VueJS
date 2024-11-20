@@ -2,39 +2,39 @@
 import { reactive } from 'vue';
 
 const estado = reactive({
-    primeiroNumero: '',
-    segundoNumero: '',
-    operacoes: {
-        soma: (a, b) => a + b,
-        subtracao: (a, b) => a - b,
-        multiplicacao: (a, b) => a * b,
-        divisao: (a, b) => (b !== 0 ? a / b : 'Divisão por zero'),
-    },
-    resultado: 0,
+  primeiroNumero: '',
+  segundoNumero: '',
+  operacoes: {
+    soma: (a, b) => a + b,
+    subtracao: (a, b) => a - b,
+    multiplicacao: (a, b) => a * b,
+    divisao: (a, b) => (b !== 0 ? a / b : 'Divisão por zero'),
+  },
+  resultado: 0,
 });
 
 const calcularResultado = () => {
-    const { primeiroNumero, segundoNumero, operacaoMatematica } = estado;
-    estado.resultado = estado.operacoes[operacaoMatematica](parseFloat(primeiroNumero), parseFloat(segundoNumero));
+  const { primeiroNumero, segundoNumero, operacaoMatematica } = estado;
+  estado.resultado = estado.operacoes[operacaoMatematica](parseFloat(primeiroNumero), parseFloat(segundoNumero));
 };
 </script>
 
 <template>
-    <div class="container ">
-        <h1 class="fnt">Calculadora Aritmética VueJs</h1>
+  <div class="container ">
+    <h1 class="fnt">Calculadora Aritmética VueJs</h1>
 
-        <input type="text" v-model="estado.primeiroNumero" @input="calcularResultado" />
-        <input type="text" v-model="estado.segundoNumero" @input="calcularResultado" />
+    <input type="text" v-model="estado.primeiroNumero" @input="calcularResultado" />
+    <input type="text" v-model="estado.segundoNumero" @input="calcularResultado" />
 
-        <select v-model="estado.operacaoMatematica" @change="calcularResultado">
-            <option value="soma">Soma</option>
-            <option value="subtracao">Subtração</option>
-            <option value="multiplicacao">Multiplicação</option>
-            <option value="divisao">Divisão</option>
-        </select>
+    <select v-model="estado.operacaoMatematica" @change="calcularResultado">
+      <option value="soma">Soma</option>
+      <option value="subtracao">Subtração</option>
+      <option value="multiplicacao">Multiplicação</option>
+      <option value="divisao">Divisão</option>
+    </select>
 
-        <p>Resultado: {{ estado.resultado }}</p>
-    </div>
+    <p>Resultado: {{ estado.resultado }}</p>
+  </div>
 </template>
 
 <style scoped>
@@ -79,5 +79,26 @@ select {
 .result {
   align-items: center;
   font-size: 1.2em;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 480px) {
+  .container {
+    padding: 10px;
+  }
+
+  .fnt {
+    font-size: 1.1em;
+  }
+
+  input,
+  select {
+    padding: 6px;
+    font-size: 0.9em;
+  }
+
+  p {
+    font-size: 1em;
+  }
 }
 </style>
