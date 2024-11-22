@@ -81,7 +81,7 @@ select {
   font-size: 1.2em;
 }
 
-/*Media Queries para responsividade*/
+/* Media Queries para responsividade */
 @media (max-width: 480px) {
   .container {
     padding: 10px;
